@@ -4,7 +4,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { mergeSchemas, makeExecutableSchema } from 'graphql-tools';
 import { GraphQLSchema } from 'graphql';
-import * as Redis from 'ioredis';
+import { redis } from "./redis";
 
 import { createTypeormConn } from "./utils/createTypeormConn";
 import { User } from './entity/User';
@@ -19,7 +19,6 @@ export const startServer = async () => {
 
   })
   
-  const redis = new Redis();
   const server = new GraphQLServer({ 
     schema: mergeSchemas({ schemas }),
     context: ({request}) => ({
