@@ -35,6 +35,7 @@
       "redis": "^2.8.0",
       "redis-server": "^1.2.2",
       "reflect-metadata": "^0.1.10",
+      "sparkpost": "^2.1.2",
       "typeorm": "0.2.7",
       "uuid": "^3.3.2",
       "yup": "^0.26.2"
