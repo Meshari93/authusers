@@ -1,10 +1,12 @@
 import * as bcrypt from 'bcryptjs';
 import * as yup from "yup";
+ 
 import { ResolverMap } from "../../types/graphql-utils";
 import { User } from '../../entity/User';
 import { formatYupError } from '../../utils/formatYupError';
 import { duplicateEmail, emailNotLongEnough, invalidEmail, passwordNotLongEnough } from './errorMessages';
-import { createConfirmEmailLink } from '../../utils/createConfirmEmailLink';
+// import { createConfirmEmailLink } from '../../utils/createConfirmEmailLink';
+// import { sendEmail } from '../../utils/sendEmail';
 
 
 const schema = yup.object().shape({
@@ -24,7 +26,9 @@ export const resolvers: ResolverMap = {
     },
     Mutation: {
       register: async (
-        _, args: GQL.IRegisterOnMutationArguments, { redis, url } ) => {
+        _, args: GQL.IRegisterOnMutationArguments,
+        //  { redis, url } 
+        ) => {
          try {
           await schema.validate(args, { abortEarly: false });
          }catch (err) {
@@ -43,13 +47,16 @@ export const resolvers: ResolverMap = {
 
         const hashedPasswrod = await bcrypt.hash(password, 10);
         const user =  User.create({
-          email,
+           email,
           password: hashedPasswrod,
         });
 
         await user.save();
 
-        await createConfirmEmailLink(url , user.id, redis);
+        // if (process.env.NODE_ENV !== 'test') {
+        //   await sendEmail(email, await createConfirmEmailLink(url , user.id, redis));
+        // }
+        
        return null; 
       }
     },
