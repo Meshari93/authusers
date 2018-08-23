@@ -1,3 +1,7 @@
+
+import "reflect-metadata";
+import "dotenv/config";
+
 import { GraphQLServer } from 'graphql-yoga';
 import * as session from "express-session";
 import * as connectRedis from "connect-redis";
@@ -40,7 +44,7 @@ export const startServer = async () => {
 
   const cors = {
     credentials: true,
-    origin: process.env.FRONTEND_HOST as string
+    origin:process.env.NODE_ENV === "test" ? "*" : process.env.FRONTEND_HOST as string
   };
 
   server.express.get("/confirm/:id", confirmEmail)
