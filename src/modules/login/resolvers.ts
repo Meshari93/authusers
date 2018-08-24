@@ -3,6 +3,7 @@ import * as bcrypt from 'bcryptjs';
 import { ResolverMap } from "../../types/graphql-utils";
 import { User } from '../../entity/User';
 import { invalidLogin, confirmEmailError } from './errorMessages';
+import { userSessionIdPrefix } from '../../constants';
    
 const errorResponse =[
     {
@@ -17,8 +18,8 @@ export const resolvers: ResolverMap = {
     }, 
     Mutation: {
       login: async (_,
-        {email, password} :GQL.ILoginOnMutationArguments,
-        {session}
+        {email, password} : GQL.ILoginOnMutationArguments ,
+        {session, redis, req}
         ) => { 
         const user = await User.findOne({ where: { email } });
 
@@ -38,10 +39,13 @@ export const resolvers: ResolverMap = {
         if (!valid) {
           return errorResponse;
         }
-       
+       // login sucessfule 
         session.userId = user.id ;
-  
-        return null;
+        if (req.sessionID) {
+          await redis.lpush(`${userSessionIdPrefix}${user.id}`, req.sessionID);         
+        } 
+        
+       return null;
 
        }
     },
