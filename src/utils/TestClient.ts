@@ -51,15 +51,13 @@ export class TestClient {
         return rp.post(this.url, {
             ...this.options,
             body: {
-                query: `
-                {
+                query: `                
                     mutation {
                         forgotPasswordChange(newPassword: "${newPassword}", key: "${key}") {
                             path
                             message
                         }
-                    }
-                }
+                    }                
                 `
             },
         });

@@ -1,15 +1,14 @@
-
 import "reflect-metadata";
 import "dotenv/config";
 
-import { GraphQLServer } from 'graphql-yoga';
+import { GraphQLServer } from "graphql-yoga";
 import * as session from "express-session";
 import * as connectRedis from "connect-redis";
 
 import { redis } from "./redis";
 import { createTypeormConn } from "./utils/createTypeormConn";
-import { confirmEmail } from './routes/confirmEmail';
-import { genSchema } from './utils/genSchema';
+import { confirmEmail } from "./routes/confirmEmail";
+import { genSchema } from "./utils/genSchema";
 import { redisSessionPrefix } from "./constants";
  
 
