@@ -4,7 +4,7 @@ import { User } from '../../entity/User';
 import { TestClient } from '../../utils/TestClient';
  
  let conn: Connection;
-const email = "bob5@bob.com";
+const email = "almeshari93@gmail.com";
 const password = "jlkajoioiqwe";
 
 let userId: string;

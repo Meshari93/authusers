@@ -11,7 +11,7 @@ import { forgotPasswordLockedError } from "../login/errorMessages";
 
 let conn: Connection;
 export const redis = new Redis();
-const email = "bob5@bob.com";
+const email = "almeshari93@gmail.com";
 const password = "jlkajoioiqwe";
 const newPassword = "qowuieoiqwueoq";
 

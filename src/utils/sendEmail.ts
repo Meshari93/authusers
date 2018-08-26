@@ -8,7 +8,9 @@ export const sendEmail = async (recipients: string, url: string) => {
           sandbox: true
         },
         content: {
-          from: 'testing@sparkpostbox.com',
+
+          from: 'support@sparkpostbox.com',
+        //   from: 'testing@sparkpostbox.com',
           subject: 'Confirm Email',
           html:
             `<html>

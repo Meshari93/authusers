@@ -14,7 +14,7 @@ let conn: Connection;
 beforeAll(async () => {
   conn = await createTypeormConn();
   const user = await User.create({
-    email: "bob5@bob.com",
+    email: "almeshari93@gmail.com",
     password: "jlkajoioiqwe"
   }).save();
   userId = user.id;

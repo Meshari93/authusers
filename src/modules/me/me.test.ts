@@ -6,7 +6,7 @@ import { TestClient } from '../../utils/TestClient';
 
 let userId : string;
 let conn: Connection;
-const email = "bob5@bob.com";
+const email = "almeshari93@gmail.com";
 const password = "jlkajoioiqwe";
 
 beforeAll(async () => {
